@@ -1,0 +1,57 @@
+ void  parse(char *line, char **args)
+{
+*args = strtok(line, ".");
+       int      i = 0;
+        while(*line != '\0')//parsing line into separate args
+        {
+                *args++  = line;//Point to argument position on line & store location!
+                while(*line!= '\0')//Keep Going while chars or until space or null marking end of 1 argument
+                line++;
+                *args = strtok(NULL, ".");//strtok starts @ next arg keeps going till space
+        }
+        }
+void generate_hexidecimal(int binary[], int hexidecimal[])
+{
+        int i;
+        for(i = SIZE-1; i > -1; i--)
+        {
+                if(i>=4)
+                {
+                if(binary[i]==1){
+                hexidecimal[1]+= pow(2,7-i);
+                }
+                }
+                else{                   //This function produces the hexidecimal equivalent of it's binary counterpart
+                                        //By iterively adding to it's value the value of the power of 2 based upon it's index.
+                if(i <=3)
+                {
+                if(binary[i]==1){
+                hexidecimal[0]+= pow(2,3-i);
+                }
+}
+}
+}
+
+}
+
+
+
+int  main()
+{
+     char  line[1024];             // User Input Line
+     char  *Iptoks[64];              // Arguments,first commmand
+
+     while (1) {                   //  Infinite Service Loop Until User's is through;
+          printf("Please Enter a Ipv4 Address please?! ");     //  Prompt User
+          fgets(line,1024,stdin);  //  Read Line for Cmmds & ARGS
+          int i = strlen(line)-1;
+          if( line[ i ] == '\n')
+              line[i] = '\0';
+          parse(line, Iptoks);       //  Parse Function is called
+          if (strcmp(Iptoks[0], "exit") == 0)  // Do you want to exit?
+               exit(0);
+          execute(args);           //  Execute the arguments(if possible)
+     }
+
+return 0;
+}
